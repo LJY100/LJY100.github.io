@@ -6,6 +6,8 @@
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <!-- build: 2026-07-22-fixed-v2 -->
 <title>후쿠오카·유후인 3박 4일 일정 · 객실 갤러리</title>
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+<script defer="" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
    :root {
         --bg: #f2eee6;
@@ -744,6 +746,43 @@
   .photo-lightbox { padding: 6px 38px; }
 }
 
+.route-map {
+  height: 300px;
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  z-index: 0;
+}
+.route-map-note {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: #8a8a8a;
+}
+.route-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #c0392b;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .4);
+}
+.route-label {
+  padding: 2px 7px;
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, .92);
+  color: #222;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+}
+
 @media print {
   .gallery-track { display: grid !important; overflow: visible !important; }
   .gallery-dots, .gallery-hint, .photo-lightbox { display: none !important; }
@@ -1096,10 +1135,10 @@
          예상 식비
         </th>
 <td data-label="1인">
-         210,000원
+         180,000원
         </td>
 <td data-label="5인">
-         1,050,000원
+         900,000원
         </td>
 </tr>
 <tr class="total">
@@ -1107,10 +1146,10 @@
          전체 합계
         </th>
 <td data-label="1인">
-         1,204,372원
+         1,174,372원
         </td>
 <td data-label="5인">
-         6,021,857원
+         5,871,857원
         </td>
 </tr>
 </tbody>
@@ -1148,7 +1187,7 @@
 <tbody>
 <tr>
 <th scope="row">
-         1일차 저녁 · 니쿠이치 야쿠인점·맥주
+         1일차 저녁 · 나가라쿠 로바타야키·주류
         </th>
 <td data-label="1인">
 </td>
@@ -1199,14 +1238,12 @@
 </tr>
 <tr>
 <th scope="row">
-         2일차 저녁 · 모츠나베·맥주
+         2일차 저녁 · 규센닌 야키니쿠·맥주
         </th>
 <td data-label="1인">
-         50,000원
-        </td>
+</td>
 <td data-label="5인">
-         250,000원
-        </td>
+</td>
 </tr>
 <tr>
 <th scope="row">
@@ -1254,7 +1291,7 @@
 </tr>
 <tr>
 <th scope="row">
-         4일차 점심 · 유후인
+         4일차 점심 · 타케오
         </th>
 <td data-label="1인">
          20,000원
@@ -1279,10 +1316,10 @@
          예상 식비 합계
         </th>
 <td data-label="1인">
-         210,000원
+         180,000원
         </td>
 <td data-label="5인">
-         1,050,000원
+         900,000원
         </td>
 </tr>
 </tbody>
@@ -1299,7 +1336,7 @@
 <div class="day-head">
 <div class="day-num">1</div>
 <div>
-<h3>10월 8일 목요일 · 라쿠스이엔 → 니쿠이치 야쿠인점 → 하카타역 야경 → 슈퍼마켓</h3>
+<h3>10월 8일 목요일 · 라쿠스이엔 → 다이묘 나가라쿠 → 하카타역 야경 → 슈퍼마켓</h3>
 <p>도착 후 가까운 정원을 둘러보고 충분히 쉰 뒤 저녁 식사</p>
 </div>
 </div>
@@ -1308,21 +1345,23 @@
 <div class="row"><div class="time">도착 후</div><div class="kind">공항 이동</div><div class="desc">입국수속 후 후쿠오카공항 국제선 → 하카타 이동</div></div>
 <div class="row"><div class="time">15:20 전후</div><div class="kind">체크인</div><div class="desc">파크사이드 인 하카타 체크인·짐 정리</div></div>
 <div class="row"><div class="time">15:40–16:30</div><div class="kind">정원</div><div class="desc">라쿠스이엔 관람. 숙소 도착이 늦으면 생략</div></div>
-<div class="row"><div class="time">16:30–18:10</div><div class="kind">휴식</div><div class="desc">숙소 복귀·휴식</div></div>
-<div class="row"><div class="time">18:10–19:00</div><div class="kind">이동</div><div class="desc">숙소 → 야쿠인 이동</div></div>
-<div class="row"><div class="time">19:00–20:30</div><div class="kind">저녁</div><div class="desc">니쿠이치 야쿠인점. 성인 5명 사전 예약</div></div>
-<div class="row"><div class="time">20:30–21:00</div><div class="kind">이동</div><div class="desc">야쿠인 → 하카타역 이동</div></div>
+<div class="row"><div class="time">16:30–18:20</div><div class="kind">휴식</div><div class="desc">숙소 복귀·휴식</div></div>
+<div class="row"><div class="time">18:20–19:00</div><div class="kind">이동</div><div class="desc">지하철로 숙소 → 텐진 하차 후 다이묘 도보 이동</div></div>
+<div class="row"><div class="time">19:00–20:30</div><div class="kind">저녁</div><div class="desc">로바타야키 나가라쿠(다이묘). 미슐랭 등재 이자카야, 성인 5명 사전 예약 권장</div></div>
+<div class="row"><div class="time">20:30–21:00</div><div class="kind">이동</div><div class="desc">다이묘 → 하카타역 지하철 이동</div></div>
 <div class="row"><div class="time">21:00–21:35</div><div class="kind">야경</div><div class="desc">JR 하카타시티 옥상 츠바메노모리 광장 산책. 악천후 시 하카타역 상가</div></div>
 <div class="row"><div class="time">21:45–22:20</div><div class="kind">장보기</div><div class="desc">써니 하카타 스미요시점에서 야식·과일·주류·다음 날 아침 장보기</div></div>
 <div class="row"><div class="time">22:30 전후</div><div class="kind">숙소</div><div class="desc">파크사이드 인 하카타 복귀</div></div>
 </div>
+<div class="route-map" id="map-day1"></div>
+<p class="route-map-note">마커 번호는 방문 순서 · 위치는 대략적 표기</p>
 </article>
 <!-- ==================== 2일차 ==================== -->
 <article class="day">
 <div class="day-head">
 <div class="day-num">2</div>
 <div>
-<h3>10월 9일 금요일 · 가와바타 → 초밥 → 텐진 → 모모치 노을 → 모츠나베 → 나카스</h3>
+<h3>10월 9일 금요일 · 가와바타 → 초밥 → 텐진 → 모모치 노을 → 규센닌 → 나카스</h3>
 <p>하카타에서 서쪽으로 이동한 뒤 모모치 노을을 보고 텐진·나카스로 복귀</p>
 </div>
 </div>
@@ -1335,11 +1374,13 @@
 <div class="row"><div class="time">16:20–17:20</div><div class="kind">해변 산책</div><div class="desc">마리존·모모치해변 산책</div></div>
 <div class="row"><div class="time">17:20–18:10</div><div class="kind">노을</div><div class="desc">모모치해변 노을 감상</div></div>
 <div class="row"><div class="time">18:10–18:50</div><div class="kind">이동</div><div class="desc">모모치해변 → 텐진 버스 이동</div></div>
-<div class="row"><div class="time">19:00–20:30</div><div class="kind">저녁</div><div class="desc">텐진에서 모츠나베·맥주</div></div>
+<div class="row"><div class="time">19:00–20:30</div><div class="kind">저녁</div><div class="desc">야키니쿠 규센닌(하루요시)·맥주. 텐진에서 도보 이동, 사전 예약 권장</div></div>
 <div class="row"><div class="time">20:40–21:20</div><div class="kind">야경</div><div class="desc">나카스 강변 산책</div></div>
 <div class="row"><div class="time">21:20–22:10</div><div class="kind">쇼핑</div><div class="desc">돈키호테 나카스점</div></div>
 <div class="row"><div class="time">22:10 이후</div><div class="kind">숙소</div><div class="desc">지하철 또는 택시로 숙소 복귀·다음 날 투어용 짐 정리</div></div>
 </div>
+<div class="route-map" id="map-day2"></div>
+<p class="route-map-note">마커 번호는 방문 순서 · 위치는 대략적 표기</p>
 </article>
 <!-- ==================== 3일차 ==================== -->
 <article class="day">
@@ -1507,6 +1548,8 @@
        </div>
 </div>
 </div>
+<div class="route-map" id="map-day3"></div>
+<p class="route-map-note">마커 번호는 방문 순서 · 위치는 대략적 표기</p>
 </article>
 <!-- ==================== 4일차 ==================== -->
 <article class="day">
@@ -1516,7 +1559,7 @@
       </div>
 <div>
 <h3>
-        10월 11일 일요일 · 무소우엔 온천 → 점심·카페 → 15:30 공항버스
+        10월 11일 일요일 · 무소우엔 온천 → 타케오 점심·카페 → 15:30 공항버스
        </h3>
 <p>
         무소우엔 10시 오픈 시간에 맞춰 온천 후 유후인 중심가에서 마지막 식사·산책
@@ -1598,7 +1641,7 @@
         점심
        </div>
 <div class="desc">
-        유후인 점심. 식당은 추후 확정
+        타케오에서 점심. 유후인역 도보 5분, 한국어 메뉴 있음
        </div>
 </div>
 <div class="row">
@@ -1672,6 +1715,8 @@
        </div>
 </div>
 </div>
+<div class="route-map" id="map-day4"></div>
+<p class="route-map-note">마커 번호는 방문 순서 · 위치는 대략적 표기</p>
 </article>
 </section>
 <section class="sources">
@@ -1829,6 +1874,101 @@
     else show(activeIndex + 1);
   }, { passive: true });
 })();
+</script>
+<script>
+window.addEventListener('load', () => {
+  const routeMaps = document.querySelectorAll('.route-map');
+  if (typeof L === 'undefined') {
+    routeMaps.forEach(el => {
+      el.style.display = 'none';
+      const note = el.nextElementSibling;
+      if (note && note.classList.contains('route-map-note')) note.style.display = 'none';
+    });
+    return;
+  }
+
+  // [위도, 경도, 장소명] — 순서 = 방문 순서, path는 재방문 포함 동선
+  const DAYS = {
+    'map-day1': {
+      places: [
+        [33.5847, 130.4510, '후쿠오카공항 국제선'],
+        [33.5861, 130.4184, '파크사이드 인 하카타'],
+        [33.5868, 130.4138, '라쿠스이엔'],
+        [33.5869, 130.3916, '로바타야키 나가라쿠(다이묘)'],
+        [33.5902, 130.4207, '하카타역 · 츠바메노모리 광장'],
+        [33.5856, 130.4143, '써니 스미요시점'],
+      ],
+      path: [0, 1, 2, 1, 3, 4, 5, 1],
+    },
+    'map-day2': {
+      places: [
+        [33.5861, 130.4184, '파크사이드 인 하카타'],
+        [33.5934, 130.4048, '가와바타 상점가'],
+        [33.5910, 130.3989, '텐진'],
+        [33.5946, 130.3517, '모모치해변 · 마리존'],
+        [33.5882, 130.4076, '야키니쿠 규센닌(하루요시)'],
+        [33.5940, 130.4057, '돈키호테 나카스점'],
+      ],
+      path: [0, 1, 2, 3, 2, 4, 5, 0],
+    },
+    'map-day3': {
+      places: [
+        [33.5861, 130.4184, '파크사이드 인 하카타'],
+        [33.5870, 130.4200, 'HEARTS 버스 스테이션 하카타'],
+        [33.5217, 130.5347, '다자이후 텐만구'],
+        [33.3175, 131.4746, '벳푸 가마도지옥'],
+        [33.2622, 131.3555, '유후인 하차 · 점심'],
+        [33.2596, 131.3637, '유후인 호텔 슈호칸'],
+        [33.2648, 131.3620, '유노츠보 거리'],
+        [33.2662, 131.3693, '긴린코 호수'],
+      ],
+      path: [0, 1, 2, 3, 4, 5, 6, 7, 5],
+    },
+    'map-day4': {
+      places: [
+        [33.2596, 131.3637, '유후인 호텔 슈호칸'],
+        [33.2540, 131.3552, '야마노호텔 무소우엔'],
+        [33.2632, 131.3581, '타케오'],
+        [33.2648, 131.3620, '유노츠보 거리 · 카페'],
+        [33.2620, 131.3552, '유후인역 앞 버스센터'],
+        [33.5847, 130.4510, '후쿠오카공항 국제선'],
+      ],
+      path: [0, 1, 2, 3, 4, 5],
+    },
+  };
+
+  Object.entries(DAYS).forEach(([id, day]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const map = L.map(id, { scrollWheelZoom: false });
+    L.tileLayer('https://mt{s}.google.com/vt/lyrs=m&hl=ko&x={x}&y={y}&z={z}', {
+      subdomains: '0123',
+      attribution: '&copy; Google',
+    }).addTo(map);
+    day.places.forEach(([lat, lng, name], i) => {
+      L.marker([lat, lng], {
+        icon: L.divIcon({
+          className: '',
+          html: `<div class="route-pin">${i + 1}</div>`,
+          iconSize: [24, 24],
+          iconAnchor: [12, 12],
+        }),
+      }).addTo(map).bindTooltip(name, {
+        permanent: true,
+        direction: 'right',
+        offset: [14, 0],
+        className: 'route-label',
+      });
+    });
+    L.polyline(day.path.map(i => [day.places[i][0], day.places[i][1]]), {
+      color: '#c0392b',
+      weight: 3,
+      opacity: 0.7,
+      dashArray: '6 6',
+    }).addTo(map);
+    map.fitBounds(L.latLngBounds(day.places.map(p => [p[0], p[1]])).pad(0.15));
+  });
+});
 </script>
 </body>
 </html>
